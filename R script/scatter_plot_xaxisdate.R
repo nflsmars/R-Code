@@ -1,0 +1,10 @@
+rm(list=ls())
+library(dplyr)
+library(lubridate)
+data=read.table("Wave2.csv",sep = ',',F)
+data=data[,1:2]
+data2=na.omit(data)
+data2[,3]=ymd(data2[,2])
+plot(data2$V3,data2$V1,xlab = 'Date',ylab = 'Political Trust',main = 'Government Political Trust',xaxt='n',yaxt='n')
+axis.Date(1,Day,at=seq(as.Date('2007/12/01'),by = 'quarters',length.out = 5),labels = seq(as.Date('2007/12/01'),by = 'quarters',length.out = 5))
+abline(v=as.Date('2008/01/10'),col='red')
